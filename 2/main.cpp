@@ -1,5 +1,14 @@
 #include <iostream>
 
+enum rooms{
+    BEDROOM=1,
+    KITCHEN=2,
+    BATHROOM=4,
+    PLAYROOM=8,
+    HALL=16
+
+};
+
 struct room{
     std::string name="uknown";
     int space=0;
@@ -21,8 +30,15 @@ struct buildings{
     bool oven_bath=false;
     home house;
 };
-
+void type_of_room (int type, std::string name){
+    if (name == "bedroom") type |= BEDROOM;
+    else if (name == "kitchen")  type |= KITCHEN;
+    else if (name == "bathroom") type |= BATHROOM;
+    else if (name == "playroom") type |= PLAYROOM;
+    else if (name == "hall") type |= HALL;
+}
 int main() {
+    int type=0;
     int area_count;
     int buildings_count;
     int space_village, space_area = 0;
@@ -60,6 +76,7 @@ int main() {
             for (int z = 0; z < area.house.some_floor.room_count; z++) {
                 std::cout << "Input room's " <<z+1<<" name" << std::endl;
                 std::cin >> area.house.some_floor.some_room.name;
+                type_of_room(type,area.house.some_floor.some_room.name);
                 std::cout << "Input room's space" << std::endl;
                 std::cin >> area.house.some_floor.some_room.space;
             }
