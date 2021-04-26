@@ -1,18 +1,24 @@
 #include <iostream>
 
 enum rooms{
-    BEDROOM=1,
-    KITCHEN=2,
-    BATHROOM=4,
-    PLAYROOM=8,
-    HALL=16
+    BEDROOM,
+    KITCHEN,
+    BATHROOM,
+    PLAYROOM,
+    HALL
 
+};
+enum building{
+    GARAGE,
+    BARN,
+    BATH,
 };
 
 struct room{
-    std::string name="uknown";
+    std::string name="unknown";
     int space=0;
 };
+
 struct floor{
     int room_count=0;
     int high=0;
@@ -25,20 +31,25 @@ struct home{
     bool oven=false;
 };
 struct buildings{
-    std::string name="uknown";
+    std::string name="unknown";
     int space_buildings=0;
     bool oven_bath=false;
     home house;
 };
-void type_of_room (int type, std::string name){
-    if (name == "bedroom") type |= BEDROOM;
-    else if (name == "kitchen")  type |= KITCHEN;
-    else if (name == "bathroom") type |= BATHROOM;
-    else if (name == "playroom") type |= PLAYROOM;
-    else if (name == "hall") type |= HALL;
+void type_of_room (int& type, std::string name){
+    if (name == "bedroom") type = BEDROOM;
+    else if (name == "kitchen")  type = KITCHEN;
+    else if (name == "bathroom") type = BATHROOM;
+    else if (name == "playroom") type = PLAYROOM;
+    else if (name == "hall") type = HALL;
+}
+void type_of_building (int& type, std::string name){
+    if (name == "garage") type = GARAGE;
+    else if (name == "barn")  type = BARN;
+    else if (name == "bath") type = BATH;
 }
 int main() {
-    int type=0;
+    int type_room, type_build;
     int area_count;
     int buildings_count;
     int space_village, space_area = 0;
@@ -54,6 +65,7 @@ int main() {
             for (int j = 0; j < buildings_count - 1; j++) {
                 std::cout << "Input building's " <<j+1<<"name" << std::endl;
                 std::cin >> area.name;
+                type_of_building(type_build,area.name);
                 std::cout << "Input " << area.name << "'s space" << std::endl;
                 std::cin >> area.space_buildings;
                 space_area += area.space_buildings;
@@ -76,7 +88,7 @@ int main() {
             for (int z = 0; z < area.house.some_floor.room_count; z++) {
                 std::cout << "Input room's " <<z+1<<" name" << std::endl;
                 std::cin >> area.house.some_floor.some_room.name;
-                type_of_room(type,area.house.some_floor.some_room.name);
+                type_of_room(type_room,area.house.some_floor.some_room.name);
                 std::cout << "Input room's space" << std::endl;
                 std::cin >> area.house.some_floor.some_room.space;
             }
