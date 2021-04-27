@@ -11,20 +11,34 @@
 struct vector{
     double x=0, y=0;
 };
-void add(double x, double y, double x1, double y1){
-    std::cout<<"Vector ("<<x+x1<<";"<<y+y1<<")"<<std::endl;
+void add(vector& vec, vector& vec1){
+    std::cout<<"Coordinate 1 vector"<<std::endl;
+    std::cin>>vec.x>>vec.y;
+    std::cout<<"Coordinate 2 vector"<<std::endl;
+    std::cin>>vec1.x>>vec1.y;
+    std::cout<<"Vector ("<<vec.x+vec1.x<<";"<<vec.y+vec1.y<<")"<<std::endl;
 }
-void subtract(double x, double y, double x1, double y1){
-    std::cout<<"Vector ("<<x-x1<<";"<<y-y1<<")"<<std::endl;
+void subtract(vector& vec, vector& vec1){
+    std::cout<<"Coordinate 1 vector"<<std::endl;
+    std::cin>>vec.x>>vec.y;
+    std::cout<<"Coordinate 2 vector"<<std::endl;
+    std::cin>>vec1.x>>vec1.y;
+    std::cout<<"Vector ("<<vec.x-vec1.x<<";"<<vec.y-vec1.y<<")"<<std::endl;
 }
-void scale (double  n, double x, double  y){
-    std::cout<<"Vector ("<<n*x<<" ;"<<n*y<<")"<<std::endl;
+void scale (vector& vec, double& n){
+    std::cout<<"Coordinate vector and number"<<std::endl;
+    std::cin>>vec.x>>vec.y>>n;
+    std::cout<<"Vector ("<<n*vec.x<<" ;"<<n*vec.y<<")"<<std::endl;
 }
-void normalize(double x, double y){
-    std::cout<<"Vector: ("<< x/sqrt(x*x+y*y) <<"; "<<y/sqrt(x*x+y*y)<<")"<<std::endl;
+void normalize(vector& vec){
+    std::cout<<"Coordinate vector"<<std::endl;
+    std::cin>>vec.x>>vec.y;
+    std::cout<<"Vector: ("<< vec.x/sqrt(vec.x*vec.x+vec.y*vec.y) <<"; "<<vec.y/sqrt(vec.x*vec.x+vec.y*vec.y)<<")"<<std::endl;
 }
-double length(double x, double y){
-    return sqrt(x*x+y*y);
+void length(vector& vec){
+    std::cout<<"Coordinate vector"<<std::endl;
+    std::cin>>vec.x>>vec.y;
+    std::cout<<"Length = "<<sqrt(vec.x*vec.x+vec.y*vec.y)<<std::endl;
 }
 
 int main() {
@@ -34,33 +48,19 @@ int main() {
     std::cout<<"input command"<<std::endl;
     std::cin>>command;
     if (command=="add"){
-        std::cout<<"Coordinate 1 vector"<<std::endl;
-        std::cin>>vec.x>>vec.y;
-        std::cout<<"Coordinate 2 vector"<<std::endl;
-        std::cin>>vec1.x>>vec1.y;
-        add(vec.x,vec.y, vec1.x, vec1.y);
+        add(vec, vec1);
     }
     else if (command=="subtract"){
-        std::cout<<"Coordinate 1 vector"<<std::endl;
-        std::cin>>vec.x>>vec.y;
-        std::cout<<"Coordinate 2 vector"<<std::endl;
-        std::cin>>vec1.x>>vec1.y;
-        subtract(vec.x,vec.y,vec1.x,vec1.y);
+        subtract(vec, vec1);
     }
     else if (command=="scale"){
-        std::cout<<"Coordinate vector and number"<<std::endl;
-        std::cin>>vec.x>>vec.y>>n;
-        scale(n, vec.x, vec.y);
+        scale(vec,n);
     }
     else if (command=="length"){
-        std::cout<<"Coordinate vector"<<std::endl;
-        std::cin>>vec.x>>vec.y;
-        std::cout<<"Length = "<< length(vec.x,vec.y) <<std::endl;
+         length(vec);
     }
     else if (command=="normalize"){
-        std::cout<<"Coordinate vector"<<std::endl;
-        std::cin>>vec.x>>vec.y;
-        normalize(vec.x,vec.y);
+        normalize(vec);
     }
     else {
         std::cout<<"Wrong! This command is not"<<std::endl;
