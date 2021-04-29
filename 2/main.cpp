@@ -1,4 +1,5 @@
 #include <iostream>
+#include<vector>
 
 enum rooms{
     BEDROOM,
@@ -22,12 +23,12 @@ struct room{
 struct floor{
     int room_count=0;
     int high=0;
-    room some_room[0];
+    std::vector<room> some_room;
 };
 struct home{
     int space_house=0;
     int floor_count=0;
-    floor some_floor[0];
+    std::vector<floor> some_floor;
     bool oven=false;
 };
 struct buildings{
@@ -56,7 +57,7 @@ int main() {
     int space_village, space_area = 0;
     std::cout << "Input village's space" << std::endl;
     std::cin >> space_village;
-    buildings area[area_count][buildings_count];
+    std::vector<std::vector<buildings>> area;
     std::cout << "Input area's count" << std::endl;
     std::cin >> area_count;
     for (int i = 0; i < area_count; i++) {
