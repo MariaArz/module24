@@ -71,15 +71,19 @@ int main() {
                 std::cout << "Input " << area[i][j].name << "'s space" << std::endl;
                 std::cin >> area[i][j].space_buildings;
                 space_area += area[i][j].space_buildings;
+
                 if (area[i][j].name == "bath") {
                     std::cout << "Input oven's" << std::endl;
                     std::cin >> std::boolalpha >> area[i][j].oven_bath;
                 }
+                area[i].push_back(area[i][j]);
             }
         }
         std::cout << "Input about house" << std::endl << "input house's space" << std::endl;
         std::cin >> area[i][buildings_count-1].house.space_house;
         space_area += area[i][buildings_count-1].house.space_house;
+        std::cout << "Input oven's" << std::endl;
+        std::cin >> std::boolalpha >> area[i][buildings_count-1].house.oven;
         std::cout << "input floor's count" << std::endl;
         std::cin >> area[i][buildings_count-1].house.floor_count;
         for (int k = 0; k < area[i][buildings_count-1].house.floor_count; k++) {
@@ -93,10 +97,9 @@ int main() {
                 type_of_room(type_room,area[i][buildings_count-1].house.some_floor[k].some_room[z].name);
                 std::cout << "Input room's space" << std::endl;
                 std::cin >> area[i][buildings_count-1].house.some_floor[k].some_room[z].space;
+                area[i].push_back(area[i][buildings_count-1]);
             }
         }
-        std::cout << "Input oven's" << std::endl;
-        std::cin >> std::boolalpha >> area[i][buildings_count-1].house.oven;
     }
     std::cout<<space_area*100/space_village<<"%"<<std::endl;
     return 0;
